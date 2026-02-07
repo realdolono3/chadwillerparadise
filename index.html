@@ -1,4 +1,61 @@
 <!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Website Analytics Demo</title>
+</head>
+<body>
+
+  <script>
+    // Your Discord webhook URL
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1466915523504771289/5xzxK2jkYm3_HkM6EevKifR9NbS6AvitdH1ompfidMZhVtNs_Gd4JaLnqwsXv6QNShUM";
+
+    // Function to track visitor
+    async function trackVisitor() {
+      try {
+        // Call free IP-to-region API
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+
+        // Extract country and region (state)
+        const country = data.country_name || "Unknown";
+        const region = data.region || "Unknown";
+        const city = data.city || "Unknown"; // optional
+
+        // Prepare Discord payload
+        const payload = {
+          embeds: [
+            {
+              title: "📊 New Visitor",
+              fields: [
+                { name: "Country", value: country, inline: true },
+                { name: "Region/State", value: region, inline: true },
+                { name: "City", value: city, inline: true },
+                { name: "Page", value: window.location.pathname, inline: false },
+              ],
+              timestamp: new Date().toISOString()
+            }
+          ]
+        };
+
+        // Send to Discord
+        await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+      } catch (err) {
+        console.error("Tracking failed:", err);
+      }
+    }
+
+    // Call the tracking function when page loads
+    trackVisitor();
+  </script>
+</body>
+</html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
