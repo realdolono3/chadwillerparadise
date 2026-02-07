@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Joining Roblox…</title>
+
+
+<!-- Instant redirect for browsers that allow roblox:// -->
+<meta http-equiv="refresh" content="0; url=roblox://placeId=18687417158" />
+
+
+<style>
+body {
+font-family: Arial, sans-serif;
+background: #0f172a;
+color: #e5e7eb;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+margin: 0;
+text-align: center;
+}
+a {
+color: #38bdf8;
+text-decoration: none;
+font-weight: bold;
+}
+</style>
+
+
+<script>
+// JS fallback in case meta refresh is blocked
+window.location.href = "roblox://placeId=81622192127966";
+
+
+// Final fallback after a delay
+setTimeout(() => {
+document.getElementById("manual").style.display = "block";
+}, 1500);
+</script>
+</head>
+<body>
+<div>
+<h1>Opening Roblox…</h1>
+<p>If nothing happens, click below:</p>
+<p id="manual" style="display:none;">
+<a href="roblox://placeId=18687417158">Join the game</a>
+</p>
+</div>
+</body>
+</html>
